@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube</title>
+    <link rel="stylesheet" href="cube.css">
+</head>
+<body>
+
+    <!-- SVG sprite (toggle icons) -->
+    <object data="toggle.svg" type="image/svg+xml" style="display:none" aria-hidden="true"></object>
+
+    <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24">
+            <use href="toggle.svg#icon-sun"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24">
+            <use href="toggle.svg#icon-moon"/>
+        </svg>
+    </button>
+
+    <div class="scene">
+        <div class="block tl"></div>
+        <div class="block tr"></div>
+        <div class="block bl"></div>
+        <div class="block br"></div>
+    </div>
+
+    <script>
+        const root = document.documentElement;
+        const btn = document.querySelector('.theme-toggle');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        const darkVars = {
+            '--color-bg': '#0f1923',
+            '--block-color': '#2a9db5',
+            '--block-color-mid': '#1a7a8a',
+            '--block-color-end': '#c8e6ea',
+        };
+        const lightVars = {
+            '--color-bg': '#f5f0e8',
+            '--block-color': '#1a4a4a',
+            '--block-color-mid': '#c8a96e',
+            '--block-color-end': '#2d6b5e',
+        };
+
+        function applyTheme(theme) {
+            const vars = theme === 'light' ? lightVars : darkVars;
+            for (const [k, v] of Object.entries(vars)) root.style.setProperty(k, v);
+            root.dataset.theme = theme;
+        }
+
+        let current = prefersDark.matches ? 'dark' : 'light';
+        applyTheme(current);
+
+        btn.addEventListener('click', () => {
+            current = current === 'dark' ? 'light' : 'dark';
+            applyTheme(current);
+        });
+    </script>
+
+</body>
+</html>
