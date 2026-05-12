@@ -9,7 +9,7 @@ An animated four-block loader with dark/light theme support.
 | `cube.html` | Entry point — structural markup only |
 | `cube.css` | Layout, animations, and theme custom properties |
 | `cube.js` | Theme detection, toggle logic, and colour tokens |
-| `assets/toggle.svg` | SVG sprite source — inlined into `cube.html` to avoid cross-origin `<use>` restrictions |
+| `cube.html` (sprite) | SVG symbols for the toggle icons are inlined at the top of `<body>` |
 
 ## Themes
 
