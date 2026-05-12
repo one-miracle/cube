@@ -34,37 +34,33 @@
             box-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
 
-        /* Top-left: rests at (0,0), enters from left, exits upward */
-        .tl { top: 0; left: 0; animation: tl var(--speed) infinite ease-in-out; }
-        /* Top-right: rests at (offset,0), enters from right, exits upward */
-        .tr { top: 0; left: var(--offset); animation: tr var(--speed) infinite ease-in-out; }
-        /* Bottom-left: rests at (0,offset), enters from left, exits downward */
-        .bl { top: var(--offset); left: 0; animation: bl var(--speed) infinite ease-in-out; }
-        /* Bottom-right: rests at (offset,offset), enters from right, exits downward */
-        .br { top: var(--offset); left: var(--offset); animation: br var(--speed) infinite ease-in-out; }
+        .tl { top: 0; left: 0; animation: from-left-exit-down var(--speed) infinite linear; }
+        .tr { top: 0; left: var(--offset); animation: from-left-exit-up var(--speed) infinite linear; }
+        .bl { top: var(--offset); left: 0; animation: from-right-exit-down var(--speed) infinite linear; }
+        .br { top: var(--offset); left: var(--offset); animation: from-right-exit-up var(--speed) infinite linear; }
 
-        @keyframes tl {
-            0%          { transform: translateX(calc(var(--travel) * -1)) translateY(0); }
-            35%, 60%    { transform: translateX(0) translateY(0); }
-            100%        { transform: translateX(0) translateY(calc(var(--travel) * -1)); }
+        @keyframes from-left-exit-down {
+            0%          { transform: translateX(calc(var(--travel) * -1)); }
+            35%, 60%    { transform: none; }
+            100%        { transform: translateY(var(--travel)); }
         }
 
-        @keyframes tr {
-            0%          { transform: translateX(var(--travel)) translateY(0); }
-            35%, 60%    { transform: translateX(0) translateY(0); }
-            100%        { transform: translateX(0) translateY(calc(var(--travel) * -1)); }
+        @keyframes from-left-exit-up {
+            0%          { transform: translateX(calc(var(--travel) * -1)); }
+            35%, 60%    { transform: none; }
+            100%        { transform: translateY(calc(var(--travel) * -1)); }
         }
 
-        @keyframes bl {
-            0%          { transform: translateX(calc(var(--travel) * -1)) translateY(0); }
-            35%, 60%    { transform: translateX(0) translateY(0); }
-            100%        { transform: translateX(0) translateY(var(--travel)); }
+        @keyframes from-right-exit-down {
+            0%          { transform: translateX(var(--travel)); }
+            35%, 60%    { transform: none; }
+            100%        { transform: translateY(var(--travel)); }
         }
 
-        @keyframes br {
-            0%          { transform: translateX(var(--travel)) translateY(0); }
-            35%, 60%    { transform: translateX(0) translateY(0); }
-            100%        { transform: translateX(0) translateY(var(--travel)); }
+        @keyframes from-right-exit-up {
+            0%          { transform: translateX(var(--travel)); }
+            35%, 60%    { transform: none; }
+            100%        { transform: translateY(calc(var(--travel) * -1)); }
         }
     </style>
 </head>
