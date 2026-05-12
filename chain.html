@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        :root {
+            --speed: 5s;
+            --block-size: 60px;
+            --gap: 10px;
+            --travel: 60vw;
+            --offset: calc(var(--block-size) + var(--gap));
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0a0a0a;
+            overflow: hidden;
+        }
+
+        .scene {
+            position: relative;
+            width: calc(var(--block-size) * 2 + var(--gap));
+            height: calc(var(--block-size) * 2 + var(--gap));
+        }
+
+        .block {
+            position: absolute;
+            width: var(--block-size);
+            height: var(--block-size);
+            background: #ffffff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        /* Top-left: rests at (0,0), enters from left, exits upward */
+        .tl { top: 0; left: 0; animation: tl var(--speed) infinite ease-in-out; }
+        /* Top-right: rests at (offset,0), enters from right, exits upward */
+        .tr { top: 0; left: var(--offset); animation: tr var(--speed) infinite ease-in-out; }
+        /* Bottom-left: rests at (0,offset), enters from left, exits downward */
+        .bl { top: var(--offset); left: 0; animation: bl var(--speed) infinite ease-in-out; }
+        /* Bottom-right: rests at (offset,offset), enters from right, exits downward */
+        .br { top: var(--offset); left: var(--offset); animation: br var(--speed) infinite ease-in-out; }
+
+        @keyframes tl {
+            0%          { transform: translateX(calc(var(--travel) * -1)) translateY(0); }
+            35%, 60%    { transform: translateX(0) translateY(0); }
+            100%        { transform: translateX(0) translateY(calc(var(--travel) * -1)); }
+        }
+
+        @keyframes tr {
+            0%          { transform: translateX(var(--travel)) translateY(0); }
+            35%, 60%    { transform: translateX(0) translateY(0); }
+            100%        { transform: translateX(0) translateY(calc(var(--travel) * -1)); }
+        }
+
+        @keyframes bl {
+            0%          { transform: translateX(calc(var(--travel) * -1)) translateY(0); }
+            35%, 60%    { transform: translateX(0) translateY(0); }
+            100%        { transform: translateX(0) translateY(var(--travel)); }
+        }
+
+        @keyframes br {
+            0%          { transform: translateX(var(--travel)) translateY(0); }
+            35%, 60%    { transform: translateX(0) translateY(0); }
+            100%        { transform: translateX(0) translateY(var(--travel)); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <div class="block tl"></div>
+        <div class="block tr"></div>
+        <div class="block bl"></div>
+        <div class="block br"></div>
+    </div>
+
+</body>
+</html>
