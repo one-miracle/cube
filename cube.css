@@ -86,12 +86,11 @@ body {
     background: var(--block-color);
 }
 
-.theme-toggle:hover .icon-sun,
-.theme-toggle:hover .icon-moon {
+.theme-toggle:hover .toggle-icon {
     stroke: var(--color-bg);
 }
 
-.icon-sun, .icon-moon {
+.toggle-icon {
     position: absolute;
     width: 20px;
     height: 20px;
@@ -99,7 +98,10 @@ body {
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;
-    transition: opacity 0.3s, stroke 0.3s;
+}
+
+.icon-sun, .icon-moon {
+    transition: opacity 0.3s;
 }
 
 [data-theme="dark"]  .icon-sun  { opacity: 1; }
